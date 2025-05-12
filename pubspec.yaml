@@ -12,6 +12,8 @@ dependencies:
 
   # Icônes Cupertino mises à jour
   cupertino_icons: ^1.0.6
+  google_fonts: ^6.1.0  # Latest as of 2024
+
 
 dev_dependencies:
   flutter_test:

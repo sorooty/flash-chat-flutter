@@ -11,30 +11,41 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
+  late Animation animation;
 
   @override
   void initState() {
-    // Gets called when the welcscreen state gets created
+    // Gets called when the welcomescreen state gets created
     super.initState();
 
     controller = AnimationController(
       duration: Duration(seconds: 1),
       vsync: this, // usually the ticker is our state object
+      upperBound: 1,
     );
+
+    animation = ColorTween(begin: Colors.blueGrey, end: Colors.white)
+        .animate(controller);
 
     controller.forward();
 
     controller.addListener(() {
       setState(() {
-        print(controller.value);
+        print(animation.value);
       });
     });
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red.withOpacity(controller.value),
+      backgroundColor: animation.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -47,7 +58,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   tag: 'logo',
                   child: Container(
                     child: Image.asset('images/logo.png'),
-                    height: 60.0,
+                    height: 60,
                   ),
                 ),
                 Text(
@@ -104,3 +115,17 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     );
   }
 }
+
+// Inside the IniState method : (B O U N C E  A N I M A T I O N)
+
+    // animation = CurvedAnimation(parent: controller, curve: Curves.ease);
+
+
+    // animation.addStatusListener((status) {
+    //   if (status == AnimationStatus.completed) {
+    //     controller.reverse(from: 1.0);
+    //   } else if (status == AnimationStatus.dismissed) {
+    //     controller.forward();
+    //   }
+    //   print(status);
+    // });

@@ -1,6 +1,8 @@
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flash_chat/components/RoundedButton.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -31,7 +33,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
     controller.addListener(() {
       setState(() {
-        print(animation.value);
+        // print(animation.value);
       });
     });
   }
@@ -61,53 +63,28 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     height: 60,
                   ),
                 ),
-                Text(
-                  'Flash Chat',
-                  style: TextStyle(
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
+                AnimatedTextKit(animatedTexts: [
+                  TypewriterAnimatedText('Flash Chat',
+                      textStyle: TextStyle(
+                        fontSize: 45.0,
+                        fontWeight: FontWeight.w900,
+                      ),
+                      speed: Duration(milliseconds: 200)),
+                ]),
               ],
             ),
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 45.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegistrationScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 45.0,
-                  child: Text(
-                    'Register',
-                  ),
-                ),
-              ),
+            wRoundedButton(
+                wColor: Colors.lightBlueAccent,
+                wOnpressed: () => Navigator.pushNamed(context, LoginScreen.id),
+                wText: "Log In"),
+            wRoundedButton(
+              wColor: Colors.blueAccent,
+              wOnpressed: () =>
+                  Navigator.pushNamed(context, RegistrationScreen.id),
+              wText: 'Register',
             ),
           ],
         ),
@@ -115,6 +92,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     );
   }
 }
+
+
 
 // Inside the IniState method : (B O U N C E  A N I M A T I O N)
 

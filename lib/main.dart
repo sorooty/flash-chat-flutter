@@ -8,7 +8,7 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(FlashChat());
 }
 
@@ -16,9 +16,12 @@ class FlashChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         textTheme: TextTheme(
-          bodyLarge: TextStyle(color: Colors.black54),
+          bodyLarge: TextStyle(
+            color: const Color.fromARGB(255, 0, 0, 0),
+          ),
         ),
       ),
       initialRoute: WelcomeScreen.id,

@@ -64,11 +64,12 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                 ),
                 AnimatedTextKit(animatedTexts: [
-                  TypewriterAnimatedText('Flash Chat',
+                  TypewriterAnimatedText('Flash Chat ',
                       textStyle: TextStyle(
                         fontSize: 45.0,
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.bold,
                       ),
+                      cursor: '_',
                       speed: Duration(milliseconds: 200)),
                 ]),
               ],

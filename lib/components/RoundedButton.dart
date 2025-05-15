@@ -19,8 +19,11 @@ class wRoundedButton extends StatelessWidget {
         child: MaterialButton(
           onPressed: wOnpressed,
           minWidth: 200.0,
-          height: 45.0,
-          child: Text(wText),
+          height: 60.0,
+          child: Text(
+            wText,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );
